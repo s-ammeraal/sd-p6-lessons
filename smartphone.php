@@ -72,12 +72,7 @@ require 'modules/functions.php'
                             <a href="order.php?id=<?= $smartphone->id?>" class="btn btn-primary">Bestellen</a>
                         </div>
                     </div>
-
                 </div>
-
-
-
-
             </div>
         </div>
 </main>
