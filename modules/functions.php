@@ -87,5 +87,3 @@ function savePurchase(array $inputs):bool
     return $sth->execute();
 }
 
-
-

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+    session_start();
 require 'modules/database.php';
 require 'modules/functions.php'
 ?>
