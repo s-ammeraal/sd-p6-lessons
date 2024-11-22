@@ -30,7 +30,7 @@
             $errors['email'] = REQUIRED;
         } else {
             global $pdo;
-            $sth = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+            $sth = $pdo->prepare("SELECT * FROM user WHERE email = :email");
             $sth->bindValue(':email', $email);
             $sth->execute();
             $result = $sth->fetchAll(PDO::FETCH_CLASS, 'User');
