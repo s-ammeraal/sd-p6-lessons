@@ -6,6 +6,7 @@
     $errors = [];
     $inputs = [];
 
+    const UNIQUE_EMAIL_REQUIRED = 'Er bestaat al een account met deze email';
     const REQUIRED = 'Dit veld is verplicht';
 
     if (isset($_POST['submit'])) {
@@ -28,7 +29,16 @@
         if ($email === false) {
             $errors['email'] = REQUIRED;
         } else {
-            $inputs['email'] = $email;
+            global $pdo;
+            $sth = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+            $sth->bindValue(':email', $email);
+            $sth->execute();
+            $result = $sth->fetchAll(PDO::FETCH_CLASS, 'User');
+            if (count($result) >= 1) {
+                $errors['email'] =  UNIQUE_EMAIL_REQUIRED;
+            } else{
+                $inputs['email'] = $email;
+            }
         }
 
         $password = filter_input(INPUT_POST, 'password');
